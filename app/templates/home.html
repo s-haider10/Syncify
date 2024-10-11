@@ -1,0 +1,68 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="welcome">Welcome {{ current_user.username }}!</h1>
+    <p>What would you like to do today?</p>
+    <button><a href="{{ url_for('views.search') }}">Search for a Song</a></button>
+    <button><a href="{{ url_for('views.rate_songs') }}">Get Recommendations</a></button>
+    <button><a href="{{ url_for('views.spotify_login') }}">Log in to Spotify</a></button>
+</div>
+<button class="logout-btn"><a href="{{ url_for('auth.logout') }}">Log Out</a></button>
+
+<style>
+    body {
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-bottom: 300px; /* Spacing between the welcome container and the logout button */
+    }
+    .welcome {
+        font-size: 2em;
+        color: #000000;
+    }
+
+    h1 {
+        font-size: 2em;
+        color: #eae4e4;
+    }
+
+    button, .logout-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 20px;
+        background-color: #007BFF;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover, .logout-btn:hover {
+        background-color: #0056b3;
+    }
+    a, .logout-btn a {
+        text-decoration: none;
+        color: white;
+    }
+    .logout-btn {
+        background-color: #ff4b4b; 
+    }
+</style>
+{% endblock %}

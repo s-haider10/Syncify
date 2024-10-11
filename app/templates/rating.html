@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Rate Songs
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Rate These Songs</h1>
+    <form method="POST">
+        {% for song in songs.iterrows() %}
+        <div class="song-rating">
+            <div class="song-title">{{ song[1]['name'] }} by {{ song[1]['artists'] }}</div>
+            <div class="rating-options">
+                <input type="radio" name="rating-{{ song[0] }}" value="1"> 1
+                <input type="radio" name="rating-{{ song[0] }}" value="2"> 2
+                <input type="radio" name="rating-{{ song[0] }}" value="3"> 3
+                <input type="radio" name="rating-{{ song[0] }}" value="4"> 4
+                <input type="radio" name="rating-{{ song[0] }}" value="5"> 5
+            </div>
+        </div>
+        {% endfor %}
+        <button type="submit">Submit Ratings</button>
+    </form>
+</div>
+    <a href="{{ url_for('views.home') }}">Back to Home</a>
+</body>
+</html>
+
+<style>
+    body {
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+    form {
+        display: inline-block;
+        text-align: left;
+        margin-top: 20px;
+    }
+    .song-rating {
+        margin-bottom: 20px;
+    }
+    .song-title {
+        font-weight: bold;
+        margin-bottom: 5px; /* Adds space between the title and the radio buttons */
+    }
+    .rating-options {
+        margin-left: 20px; /* Indent the radio buttons slightly */
+    }
+    button {
+        background-color: #008CBA; /* Blue */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #00485a;
+    }
+</style>
+{% endblock %}

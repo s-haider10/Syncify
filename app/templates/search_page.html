@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Search for a Song</h1>
+        <form method="post">
+            <input type="text" name="song_name" placeholder="Song name" required>
+            <input type="text" name="artist_name" placeholder="Artist name" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        /* background-color: #f4f4f4; */
+    }
+    .container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"], button {
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        background-color: #007BFF;
+        color: white;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Recommendations
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Recommendations based on your liking of "{{ song_name }}"</h1>
+    {% for song in recommendations %}
+    <div class="song-entry">
+        <span class="song-title">{{ song['Name'] }} by {{ song['Artists'] }}</span>
+        <div class="song-buttons">
+            <form action="{{ url_for('views.add_to_playlist') }}" method="post" class="inline-form">
+                <input type="hidden" name="song_name" value="{{ song['Name'] }}">
+                <input type="hidden" name="song_artist" value="{{ song['Artists'] }}">
+                <button type="submit">Add to Playlist</button>
+            </form>
+            <form method="post" action="{{ url_for('views.add_to_spotify_playlist') }}">
+                <input type="hidden" name="song_name" value="{{ song['Name'] }}">
+                <input type="hidden" name="song_artist" value="{{ song['Artists'] }}">
+                <button type="submit">Add to Spotify Playlist</button>
+            </form>
+            <form action="{{ url_for('views.like_song') }}" method="post" class="inline-form">
+                <input type="hidden" name="song_name" value="{{ song['Name'] }}">
+                <input type="hidden" name="song_artist" value="{{ song['Artists'] }}">
+                <button type="submit">Like</button>
+            </form>
+            <form action="{{ url_for('views.dislike_song') }}" method="post" class="inline-form">
+                <input type="hidden" name="song_name" value="{{ song['Name'] }}">
+                <input type="hidden" name="song_artist" value="{{ song['Artists'] }}">
+                <button type="submit">Dislike</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{{ url_for('views.home') }}">Back to Home</a>
+</div>
+<style>
+    body {
+        /* text-align: center; */
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+    }
+
+    .container {
+        padding: 100px;
+        border-radius: 10px;
+    }
+
+    .song-entry {
+        display: flex;
+        align-items: center; /* Aligns items vertically center */
+        justify-content: space-between; /* Spreads out the content */
+        margin: 20px;
+        padding: 10px;
+        border-bottom: 1px solid #e10f0f;
+    }
+
+    .song-title {
+        flex-grow: 1; /* Allows the song title to take up remaining space */
+    }
+
+    .song-buttons {
+        display: flex;
+        gap: 10px; /* Adds space between buttons */
+    }
+
+    .inline-form {
+        display: inline; /* Makes forms line up in a row */
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}

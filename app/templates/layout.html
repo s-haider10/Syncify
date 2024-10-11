@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="base.css">
+    <title>{% block title %}SYNCIFY{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>SYNCIFY</h1>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flashes">
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    
+    {% block content %}{% endblock %}
+
+    <footer>
+        <!-- Footer Content -->
+    </footer>
+</body>
+</html>
+
+<style>
+    header {
+        width: 100%;
+        padding: 10px 40px;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header > h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #f0e9e9;
+    }
+    .content {
+        margin-top: 100px; /* To prevent content from being hidden under the fixed header */
+        text-align: center;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .flashes {
+        margin: 20px auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        max-width: 600px;
+    }
+    .flash {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .flash.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .flash.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style>
